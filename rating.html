@@ -91,6 +91,8 @@ var Rater = function(min = 0, max = 5, parent = null){
           self.chosen = $(this);
           self.never_chose = false;
           console.log(self.chosen);
+          var chosen_value = $(self.chosen).attr('rater-value');
+          $(self.parent).val(chosen_value);
           $(this).prevAll().addBack().removeClass('glyphicon-star-empty').addClass('glyphicon-star');
         });
       });
