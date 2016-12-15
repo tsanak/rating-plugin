@@ -4,28 +4,146 @@
     <meta charset="UTF-8">
     <title>Rater - Simple ,lightweight rating plugin</title>
     <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <style media="screen">
-      body{
-        padding:100px 0 50px 20px;
+      .rater-container{
+        font-size: 1.2em;
       }
+      code{
+        display: block;
+      }
+      p{
+        font-size: 1.2em;
+      }
+      span.strong{
+        font-weight: bold;
+      }
+      #howtos > ul{
+        font-size: 1.3em;
+        padding-left: 0;
+        margin:0;
+        list-style: none;
+      }
+      #howtos > ul >li{
+        font-size: 0.9em;
+        padding-left: 20px;
+        margin-bottom: 10px;
+      }
+
     </style>
 </head>
 <body>
-  <input type="number" min='2' max='5' class='rater'>
-  <br><br><br>
-  <input type="number" min='1' max='5' class='rater'>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Rater - a simple , lightweight rating plugin </h2>
+        <input type="number" min='1' max='5' class='rater' remove-text='Remove' remove-icon='glyphicon glyphicon-remove' icon-full='glyphicon glyphicon-star'  icon-empty='glyphicon glyphicon-star-empty'>
+
+        <p>You can use any icon you want <i class='fa fa-smile-o'></i> </p>
+        <hr>
+        <h3 id='dependecies'>Dependecies <a href="#howto"><i class='fa fa-link'></i></a></h3>
+        <div class="well">
+          <p>Rater depends only on <a href="http://www.jquery.com">Jquery</a> .</p>
+        </div>
+        <hr>
+        <h3 id='howto'>How to use <a href="#howto"><i class='fa fa-link'></i></a></h3>
+        <div class="well" id='howtos'>
+          <ul>Using the plugin is quite simple
+          <li>
+            just put a <span class='strong'>class</span> named <span class='strong'>rater</span> to an input type='number'
+            <code>&lt;input type="number" class='rater'&gt;</code>
+            <input type="number" class='rater'>
+          </li>
+          <li>
+            tempering with the <span class='strong'>max</span> attribute of the input results in more/less stars
+            <code>&lt;input type="number" min='1' max='10' class='rater'&gt;</code>
+            <input type="number" max='10' class='rater'>
+          </li>
+          <li>
+            attribute <span class='strong'>remove-text</span> determines the value of the text for the element that removes the rating
+            <code>&lt;input type="number" max='5' remove-text='Remove rating' class='rater'&gt;</code>
+            <input type="number" max='5' remove-text='Remove rating' class='rater'>
+          </li>
+          <li>
+            attribute <span class='strong'>remove-icon</span> determines the value of the icon for the element that removes the rating
+            <code>&lt;input type="number" max='5' remove-icon='glyphicon glyphicon-remove' class='rater'&gt;</code>
+            <input type="number" max='5' remove-icon='glyphicon glyphicon-remove' class='rater'>
+          </li>
+          <li>
+            attribute combination of <span class='strong'>remove-text</span> &amp; <span class='strong'>remove-icon</span>
+            <code>&lt;input type="number" max='5' remove-icon='glyphicon glyphicon-remove' class='rater'&gt;</code>
+            <input type="number" max='5' remove-text='Remove' remove-icon='fa fa-ban' class='rater'>
+          </li>
+          <li>
+            attribute <span class='strong'>icon-full</span> determines which icon will be used on the selected stars, <br>
+            attribute <span class='strong'>icon-empty</span> determines which icon will be used on the unselected stars
+            <code>&lt;input type="number" max='5' class='rater' remove-text='Remove rating' icon-full='fa fa-star'  icon-empty='fa fa-star-o'&gt;</code>
+            <input type="number" max='5' class='rater' remove-text='Remove rating' icon-full='fa fa-star' icon-empty='fa fa-star-o'>
+          </li>
+          <li>
+            you can use any combination of custom icons for the attibutes <span class='strong'>icon-full</span> &amp; <span class='strong'>icon-empty</span>
+            <code>&lt;input type="number" max='5' class='rater' remove-text='Remove rating' icon-full='glyphicon glyphicon-star'  icon-empty='fa fa-star-o'&gt;</code>
+            <input type="number" max='5' class='rater' remove-text='Remove rating' icon-full='fa fa-star'  icon-empty='glyphicon glyphicon-star-empty'>
+
+            <code>&lt;input type="number" max='5' class='rater' remove-text='Remove rating' icon-full='glyphicon glyphicon-star'  icon-empty='fa fa-star-o'&gt;</code>
+            <input type="number" max='5' class='rater' remove-text='Remove' remove-icon='fa fa-times' icon-full='fa fa-bell'  icon-empty='fa fa-bell-o'>
+          </li>
+          </ul>
+        </div>
+        <hr>
+        <h3 id='examples'>Examples <a href="#examples"><i class='fa fa-link'></i></a></h3>
+        <div class="well" id="default_icons">
+          <h4><a href="#default_icons">Default icons for stars.</a></h4>
+          <code>&lt;input type="number" min='1' max='5' class='rater'&gt;</code>
+          <input type="number" min='1' max='5' class='rater'>
+        </div>
+        <div class="well" id="custom_icons_rm_text_and_rm_icon">
+          <h4><a href="#custom_icons_rm_text_and_rm_icon">Custom [bootstrap] icons for stars, custom icon for "remove" and remove text.</a></h4>
+          <code>&lt;input type="number" min='1' max='5' class='rater' remove-text='Remove' remove-icon='glyphicon glyphicon-remove' icon-full='glyphicon glyphicon-star'  icon-empty='glyphicon glyphicon-star-empty'	&gt;</code>
+          <input type="number" min='1' max='5' class='rater' remove-text='Remove' remove-icon='glyphicon glyphicon-remove' icon-full='glyphicon glyphicon-star'  icon-empty='glyphicon glyphicon-star-empty'>
+        </div>
+        <div class="well" id="custom_icons_rm_text">
+          <h4><a href="#custom_icons_rm_text">Custom [fontawesome] icons for stars, custom text for remove.</a></h4>
+          <code>&lt;input type="number" min='1' max='5' class='rater' remove-text='Remove rating' icon-full='fa fa-star'  icon-empty='fa fa-star-o'&gt;</code>
+          <input type="number" min='1' max='5' class='rater' remove-text='Remove rating' icon-full='fa fa-star'  icon-empty='fa fa-star-o'>
+        </div>
+        <div class="well" id="custom_icons_mix">
+          <h4><a href="#custom_icons_mix">Custom [fontawesome] &amp; [bootstrap] icons for stars.</a></h4>
+          <code>&lt;input type="number" min='1' max='5' class='rater' icon-full='fa fa-star'  icon-empty='glyphicon glyphicon-star-empty'&gt;</code>
+          <input type="number" min='1' max='5' class='rater' icon-full='fa fa-star'  icon-empty='glyphicon glyphicon-star-empty'>
+        </div>
+        <div class="well" id="custom_icons_rm_icon">
+          <h4><a href="#custom_icons_rm_icon">Custom [fontawesome] icons for stars, custom icon for remove.</a></h4>
+          <code>&lt;input type="number" min='1' max='5' class='rater' remove-icon='fa fa-ban' icon-full='fa fa-bell' icon-empty='fa fa-bell-o'&gt;</code>
+          <input type="number" min='1' max='5' class='rater' remove-icon='fa fa-ban' icon-full='fa fa-bell' icon-empty='fa fa-bell-o'>
+        </div>
+      </div>
+    </div>
+  </div>
   <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
   <script  src="js/bootstrap.min.js"></script>
   <script>
-//TODO: REMOVE RATING WITH TEXT + ICON OR BUTTON
-var Rater = function(min = 0, max = 5, parent = null){
+//TODO: 
+function addcss(css){
+   var head = document.getElementsByTagName('head')[0];
+   var s = document.createElement('style');
+   s.setAttribute('type', 'text/css');
+   if (s.styleSheet) {
+       s.styleSheet.cssText = css;
+   } else {
+       s.appendChild(document.createTextNode(css));
+   }
+   head.appendChild(s);
+}
+var Rater = function(min = 0, max = 5, parent = null, icon_empty = 'rater-default-empty', icon_full = 'rater-default-full', remove_text = "", remove_icon = ""){
   this.min = min;
   this.max = max;
   this.never_chose = true;
   this.chosen = null;
   this.parent = parent;
+  this.icon_full = icon_full;
+  this.icon_empty = icon_empty;
   this.removeSelected = function(){
     this.never_chose = true;
     this.chosen = null;
@@ -35,11 +153,14 @@ var Rater = function(min = 0, max = 5, parent = null){
       var totalStars = "";
       var max = this.max;
       var min = this.min;
-      var count = max - min;
+      var count = max - min + 1;
       if(min === 0) count--;
+      var icon_full = this.icon_full;
+      var icon_empty = this.icon_empty;
+
       for(var i=1; i<=count; i++)
       {
-          stars.push($.parseHTML( "<i class='glyphicon glyphicon-star-empty rater' rater-value='"+ i +"'></i>" ));
+          stars.push($.parseHTML( "<i class='"+icon_empty+" rater' rater-value='"+ i +"'></i>" ));
           totalStars += stars[i];
       }
       var container = $.parseHTML("<div class='rater-container'></div>");
@@ -48,6 +169,20 @@ var Rater = function(min = 0, max = 5, parent = null){
       {
         $(stars[i]).appendTo(container);
       }
+
+      var remove_icon_container = "";
+      if(remove_icon!="")
+      {
+        remove_icon_container = "<i class='"+ remove_icon +"'></i>";
+      }
+      remove_icon = $.parseHTML(remove_icon_container);
+      var remove_rating = $.parseHTML("<span class='rater-remove'></span>");
+      remove_text = $.parseHTML("<span>"+remove_text+"</span>");
+      $(remove_rating).append(remove_icon).append(remove_text);
+      $(remove_rating).insertAfter(container);
+      $(container).css('display','inline');
+      $('i.rater').css('cursor','pointer');
+      $('span.rater-remove').css({'cursor': 'pointer', 'color': '#337ab7', 'margin-left': '5px'});
       var self = this;
       //Track mousemovement on parent of stars
       //Restore stars to right state depending on chosen rating
@@ -56,18 +191,18 @@ var Rater = function(min = 0, max = 5, parent = null){
         if(!self.never_chose)
         {
           $(this).find('i.rater').each(function(){
-            $(self.chosen).prevAll().addBack().removeClass('glyphicon-star-empty').addClass('glyphicon-star');
-            $(self.chosen).nextAll().addBack().removeClass('glyphicon-star').addClass('glyphicon-star-empty');
-            $(self.chosen).removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+            $(self.chosen).prevAll().addBack().removeClass(icon_empty).addClass(icon_full);
+            $(self.chosen).nextAll().addBack().removeClass(icon_full).addClass(icon_empty);
+            $(self.chosen).removeClass(icon_empty).addClass(icon_full);
           });
         }
       }).mouseleave(function(){
         if(!self.never_chose)
         {
           $(this).find('i.rater').each(function(){
-            $(self.chosen).prevAll().addBack().removeClass('glyphicon-star-empty').addClass('glyphicon-star');
-            $(self.chosen).nextAll().addBack().removeClass('glyphicon-star').addClass('glyphicon-star-empty');
-            $(self.chosen).removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+            $(self.chosen).prevAll().addBack().removeClass(icon_empty).addClass(icon_full);
+            $(self.chosen).nextAll().addBack().removeClass(icon_full).addClass(icon_empty);
+            $(self.chosen).removeClass(icon_empty).addClass(icon_full);
           });
         }
       })
@@ -77,28 +212,33 @@ var Rater = function(min = 0, max = 5, parent = null){
           e.stopPropagation();
         }).mouseenter(function(e){
           //Track mouseenter & select stars until they reach the mouse's current target
-            $(this).prevAll().addBack().removeClass('glyphicon-star-empty').addClass('glyphicon-star');
-            $(this).nextAll().addBack().removeClass('glyphicon-star').addClass('glyphicon-star-empty');
-            $(this).removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+            $(this).prevAll().addBack().removeClass(icon_empty).addClass(icon_full);
+            $(this).nextAll().addBack().removeClass(icon_full).addClass(icon_empty);
+            $(this).removeClass(icon_empty).addClass(icon_full);
         }).mouseleave(function(e){
           //Track mouseleave & deselect star (except if there is already a rating ,so don't deselect the first star)
-          $(this).prevAll().addBack().removeClass('glyphicon-star').addClass('glyphicon-star-empty');
+          $(this).prevAll().addBack().removeClass(icon_full).addClass(icon_empty);
           if(!self.never_chose && index === 0){
-            $(this).removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+            $(this).removeClass(icon_empty).addClass(icon_full);
           }
         }).click(function(e){
           //Track mouseclick & select all the stars until they reach the mouse's current target
           self.chosen = $(this);
           self.never_chose = false;
-          console.log(self.chosen);
           var chosen_value = $(self.chosen).attr('rater-value');
           $(self.parent).val(chosen_value);
-          $(this).prevAll().addBack().removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+          $(this).prevAll().addBack().removeClass(icon_empty).addClass(icon_full);
         });
       });
 
-
-
+      // Track mouseclick & remove all the selected stars
+      $(remove_rating).click(function(){
+        self.removeSelected();
+        $(container).find('i.rater').each(function(){
+          $(this).removeClass(icon_full).addClass(icon_empty);
+          $(self.parent).val("");
+        });
+      });
   };
 }
 var raters = [];
@@ -116,7 +256,35 @@ $(document).ready(function(){
     var parent = $(this).clone().attr('type','hidden');
     parent.insertAfter(this).prev().remove();
     //Initialize raters
-    raters.push(new Rater(min,max, parent).createStars());
+    if($(parent).attr('icon-full')==null)
+    {
+      icon_full = 'rater-default-full';
+      var css = "i.rater-default-empty:before{ content: '\\2606'; font-size: 1em;} i.rater-default-full:before{ content: '\\2605'; font-size: 1em;}";
+      addcss(css);
+    }
+    else {
+      icon_full = $(parent).attr('icon-full');
+    }
+    if($(parent).attr('icon-empty')==null)
+    {
+      icon_empty = 'rater-default-empty';
+      var css = "i.rater-default-empty:before{ content: '\\2606'; font-size: 1em;} i.rater-default-full:before{ content: '\\2605'; font-size: 1em;}";
+      addcss(css);
+    }
+    else {
+      icon_empty = $(parent).attr('icon-empty');
+    }
+    var remove_text = "";
+    var remove_icon = "";
+    if($(parent).attr('remove-text')!=null)
+    {
+      remove_text = $(parent).attr('remove-text');
+    }
+    if($(parent).attr('remove-icon')!=null)
+    {
+      remove_icon = $(parent).attr('remove-icon');
+    }
+    raters.push(new Rater(min, max, parent, icon_empty, icon_full, remove_text, remove_icon).createStars());
   });
 
 });
