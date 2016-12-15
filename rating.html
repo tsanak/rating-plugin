@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Rater - Simple ,lightweight rating plugin</title>
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style media="screen">
+      body{
+        padding:100px 0 50px 20px;
+      }
+    </style>
+</head>
+<body>
+  <input type="number" min='2' max='5' class='rater'>
+  <br><br><br>
+  <input type="number" min='1' max='5' class='rater'>
+  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+  <script  src="js/bootstrap.min.js"></script>
+  <script>
+//TODO: REMOVE RATING WITH TEXT + ICON OR BUTTON
+var Rater = function(min = 0, max = 5, parent = null){
+  this.min = min;
+  this.max = max;
+  this.never_chose = true;
+  this.chosen = null;
+  this.parent = parent;
+  this.removeSelected = function(){
+    this.never_chose = true;
+    this.chosen = null;
+  };
+  this.createStars = function(){
+      var stars = [];
+      var totalStars = "";
+      var max = this.max;
+      var min = this.min;
+      var count = max - min;
+      if(min === 0) count--;
+      for(var i=1; i<=count; i++)
+      {
+          stars.push($.parseHTML( "<i class='glyphicon glyphicon-star-empty rater' rater-value='"+ i +"'></i>" ));
+          totalStars += stars[i];
+      }
+      var container = $.parseHTML("<div class='rater-container'></div>");
+      $(container).insertAfter(this.parent);
+      for(var i=0; i<stars.length; i++)
+      {
+        $(stars[i]).appendTo(container);
+      }
+      var self = this;
+      //Track mousemovement on parent of stars
+      //Restore stars to right state depending on chosen rating
+      //when user leaves i.rater items
+      $(container).mousemove(function(e){
+        if(!self.never_chose)
+        {
+          $(this).find('i.rater').each(function(){
+            $(self.chosen).prevAll().addBack().removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+            $(self.chosen).nextAll().addBack().removeClass('glyphicon-star').addClass('glyphicon-star-empty');
+            $(self.chosen).removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+          });
+        }
+      }).mouseleave(function(){
+        if(!self.never_chose)
+        {
+          $(this).find('i.rater').each(function(){
+            $(self.chosen).prevAll().addBack().removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+            $(self.chosen).nextAll().addBack().removeClass('glyphicon-star').addClass('glyphicon-star-empty');
+            $(self.chosen).removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+          });
+        }
+      })
+      $(container).find('i.rater').each(function(index){
+        //Track mousemovement stop event bubbling to parent.
+        $(this).mousemove(function(e){
+          e.stopPropagation();
+        }).mouseenter(function(e){
+          //Track mouseenter & select stars until they reach the mouse's current target
+            $(this).prevAll().addBack().removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+            $(this).nextAll().addBack().removeClass('glyphicon-star').addClass('glyphicon-star-empty');
+            $(this).removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        }).mouseleave(function(e){
+          //Track mouseleave & deselect star (except if there is already a rating ,so don't deselect the first star)
+          $(this).prevAll().addBack().removeClass('glyphicon-star').addClass('glyphicon-star-empty');
+          if(!self.never_chose && index === 0){
+            $(this).removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+          }
+        }).click(function(e){
+          //Track mouseclick & select all the stars until they reach the mouse's current target
+          self.chosen = $(this);
+          self.never_chose = false;
+          console.log(self.chosen);
+          $(this).prevAll().addBack().removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+        });
+      });
+
+
+
+  };
+}
+var raters = [];
+$(document).ready(function(){
+  //Search the DOM for Rater elements
+  $('.rater').each(function(){
+    var min = $(this).attr('min');
+    var max = $(this).attr('max');
+
+    if(!min || !$.isNumeric(min) || min < 0) min = 0;
+    if(!max || !$.isNumeric(max) || max < 0) max = 5;
+    min = Number.parseInt(min);
+    max = Number.parseInt(max);
+    //Make input hidden
+    var parent = $(this).clone().attr('type','hidden');
+    parent.insertAfter(this).prev().remove();
+    //Initialize raters
+    raters.push(new Rater(min,max, parent).createStars());
+  });
+
+});
+  </script>
+</body>
+</html>
